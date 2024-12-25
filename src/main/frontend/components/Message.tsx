@@ -1,3 +1,5 @@
+import React from 'react';
+import { Comment } from 'semantic-ui-react';
 
 export interface MessageItem {
   role: 'user' | 'assistant';
@@ -8,13 +10,16 @@ interface MessageProps {
   message: MessageItem;
 }
 
-export default function Message({message}: MessageProps) {
+export default function Message({ message }: MessageProps) {
+  const isBot = message.role === 'assistant';
   return (
-    <div className="mb-l">
-      <div className="font-bold">{message.role === 'user' ? '🧑‍💻 You' : '🤖 Assistant'}</div>
-      <div>
-          {message.content}
-      </div>
-    </div>
-  )
-};
+    <Comment>
+      <Comment.Content>
+        <Comment.Author as="a">
+          {isBot ? '🤖 Assistant' : '🧑‍💻 You'}
+        </Comment.Author>
+        <Comment.Text>{message.content}</Comment.Text>
+      </Comment.Content>
+    </Comment>
+  );
+}

@@ -5,6 +5,7 @@
 - A valid phone number for contact purposes.
 - A complete delivery address for order fulfillment.
  1.3 Users must ensure the accuracy of the provided phone number and address to avoid delays or errors in delivery.
+ 1.4 If create a booking through chat ai user can only have the method cash by cod. If user want to pay for it online user must create a booking through website.
 2. Payments
  2.1 Payments can be made using the available payment methods provided at checkout.
  2.2 Users must ensure sufficient funds or valid payment credentials when placing an order.

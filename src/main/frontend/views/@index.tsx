@@ -1,11 +1,12 @@
 import 'semantic-ui-css/semantic.min.css'
-import {Grid, GridColumn, Segment} from 'semantic-ui-react'
-import {v4  as uuid}  from 'uuid';
-import React, {useState} from 'react'
+import { Container, Grid, GridColumn, Segment } from 'semantic-ui-react'
+import { v4 as uuid } from 'uuid';
+import React, { useState } from 'react'
 import { MessageItem } from 'Frontend/components/Message';
 import { AssistanceService } from 'Frontend/generated/endpoints';
-import {MessageInput} from "@vaadin/react-components/MessageInput";
+import { MessageInput } from "@vaadin/react-components/MessageInput";
 import AiChat from 'Frontend/components/AiChat';
+import ChatHeader from 'Frontend/components/ChatHeader';
 
 export default function HomeView() {
   const [chatId, setChatId] = useState(uuid());
@@ -52,18 +53,10 @@ export default function HomeView() {
   }
 
   return (
-    <Segment >
-        <Grid columns={2} divided>
-              <GridColumn width={4}>
-              <h3>Funnair support</h3>
-                  <AiChat messages={messages} className="flex-grow overflow-scroll"/>
-                  <MessageInput onSubmit={e => sendMessage(e.detail.value)} className="px-0"/>
-              </GridColumn>
-              <GridColumn width={12}>
-
-              </GridColumn>
-        </Grid>
-    </Segment>
+    <Container  className='main'>
+      <ChatHeader/>
+      <AiChat messages={messages} working={working} />
+      <MessageInput onSubmit={e => sendMessage(e.detail.value)} className="px-0" />
+    </Container>
   );
 }
-

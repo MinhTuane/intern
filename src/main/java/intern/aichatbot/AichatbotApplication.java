@@ -32,6 +32,7 @@ import intern.aichatbot.service.CustomerSupportAgent;
 import com.vaadin.flow.theme.Theme;
 
 import intern.aichatbot.service.impl.BookingTools;
+import intern.aichatbot.service.impl.ProductTools;
 
 @SpringBootApplication
 @EntityScan(basePackages = "intern.aichatbot.entity")
@@ -51,13 +52,14 @@ public class AichatbotApplication implements AppShellConfigurator {
     @Bean
     CustomerSupportAgent customerSupportAgent(StreamingChatLanguageModel streamingChatLanguageModel, 
 												Tokenizer tokenizer, Retriever<TextSegment> retriever,
-                                                BookingTools tools) {
+                                                BookingTools bookingTools,ProductTools productTools) {
         return AiServices.builder(CustomerSupportAgent.class)
 		.streamingChatLanguageModel(streamingChatLanguageModel)
 		.chatMemoryProvider(chatId -> TokenWindowChatMemory.builder()
 		.id(chatId).maxTokens(500, tokenizer).build())
 		.retriever(retriever)
-        .tools(tools)
+        .tools(bookingTools)
+        .tools(productTools)
         .build();
     }
 

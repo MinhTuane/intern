@@ -1,15 +1,16 @@
 import React, { useRef, useEffect } from 'react';
-import Message, {MessageItem} from './Message';
+import { Comment } from 'semantic-ui-react';
+import Message, { MessageItem } from './Message';
+import TypingIndicator from './TypingIndicator';
 
-interface MessageListProps {
+interface AiChatProps {
   messages: MessageItem[];
-  className?: string;
+  working?: boolean;
 }
 
-export default function AiChat({ messages, className }: MessageListProps) {
+export default function AiChat({ messages,working }: AiChatProps) {
   const endOfMessagesRef = useRef<HTMLDivElement>(null);
 
-  // Automatically scroll down whenever the messages change
   useEffect(() => {
     if (endOfMessagesRef.current) {
       endOfMessagesRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -17,11 +18,12 @@ export default function AiChat({ messages, className }: MessageListProps) {
   }, [messages]);
 
   return (
-    <div className={className}>
+    <Comment.Group style={{ maxHeight: "60vh", overflowY: "auto", marginBottom: "1rem" }}>
       {messages.map((msg, index) => (
         <Message key={index} message={msg} />
       ))}
+      {working && <TypingIndicator />}
       <div ref={endOfMessagesRef} />
-    </div>
+    </Comment.Group>
   );
 }
