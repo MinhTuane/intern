@@ -13,7 +13,7 @@ export default function HomeView() {
   const [working, setWorking] = useState(false);
   const [messages, setMessages] = useState<MessageItem[]>([{
     role: 'assistant',
-    content: 'Welcome to No Name! How can I help you?'
+    content: 'Hello! How can I assist you today?'
   }]);
 
   function addMessage(message: MessageItem) {

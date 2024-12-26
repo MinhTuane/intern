@@ -7,7 +7,7 @@ public interface BookingService {
 
     Boolean changeBookingStatus(StatusBooking status);
 
-    Boolean changeInformation(String phoneNumber, String adress, String firstName, String lastName);
+    Boolean changeInformation(Long id,String phoneNumber, String adress, String firstName, String lastName);
 
     Boolean eraseProduct(String nameProduct);
 

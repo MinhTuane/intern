@@ -31,26 +31,35 @@ public class BookingTools {
 
     @Tool("""
         Customer can change address . 
-        At first ask for booking detail if there are none to get booking then have information to execute this function. Every change need to be confirmation."""
+         Every change need to be confirmation."""
         )
-    public Boolean changeAddress(String address) {
-        return bookService.changeInformation(  null, address,null,null);
+    public Boolean changeAddress(Long bookingId,String address) {
+        return bookService.changeInformation(bookingId,  null, address,null,null);
+    }
+    @Tool("""
+        Customer can change address ,phone number, first name,last name. No need ask for confirm phone number anymore.
+         Every change need to be confirmation(yes no confirm)."""
+        )
+    public Boolean changeInformation(Long bookingId,String phone,String address,String firstName,String lastName) {
+        return bookService.changeInformation(bookingId,phone, address, firstName, lastName);
     }
 
     @Tool("""
         Customer can change Phone number . 
-        At first ask for booking detail if there are none to get booking then have information to execute this function. Every change need to be confirmation."""
+         No need ask for confirm phone number anymore.
+         Every change need to be confirmation(yes no confirm)."""
         )
-    public Boolean changePhoneNumber(String phone) {
-        return bookService.changeInformation(  phone, null,null,null);
+    public Boolean changePhoneNumber(Long bookingId,String phone) {
+        return bookService.changeInformation( bookingId, phone, null,null,null);
     }
 
     @Tool("""
         Customer can change their name . 
-        At first ask for booking detail if there are none to get booking then have information to execute this function. Every change need to be confirmation."""
+         No need ask for confirm phone number anymore.
+         Every change need to be confirmation(yes no confirm)."""
         )
-    public Boolean changeName(String firstName,String lastName) {
-        return bookService.changeInformation(  null, null,firstName,lastName);
+    public Boolean changeName(Long bookingId,String firstName,String lastName) {
+        return bookService.changeInformation( bookingId, null, null,firstName,lastName);
     }
 
     @Tool("""

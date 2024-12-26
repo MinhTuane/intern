@@ -47,25 +47,22 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Boolean changeInformation(String phoneNumber, String address, String firstName, String lastName) {
-        if (caches != null) {
-            if (phoneNumber != null) {
-                caches.setPhoneNumber(phoneNumber);
-            }
-            if (address != null) {
-                caches.setAddress(address);
-            }
-            if (firstName != null) {
-                caches.setFirstName(firstName);
-            }
-            if (lastName != null) {
-                caches.setLastName(lastName);
-            }
-
-            bookingRepository.save(caches);
-            return true;
+    public Boolean changeInformation(Long id,String phoneNumber, String address, String firstName, String lastName) {
+        Booking booking = bookingRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Id booking is not correct"));
+        if(phoneNumber !=null) {
+            booking.setPhoneNumber(phoneNumber);
         }
-        return false;
+        if(address != null) {
+            booking.setAddress(address);
+        }
+        if(firstName!=null) {
+            booking.setFirstName(firstName);
+        }
+        if(lastName!=null) {
+            booking.setLastName(lastName);
+        }
+        this.bookingRepository.save(booking);
+        return true;
     }
 
     @Override
